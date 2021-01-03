@@ -1,6 +1,6 @@
 .idea/
-.git/
 *.sqlite3
 __pycache__/
 ZYmedia/__pycache__/
-pictures/migrations/
+*/migrations/
+static/
