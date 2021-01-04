@@ -1,27 +1,19 @@
-import datetime
-
-from django.utils import timezone
 from django.db import models
 
 
 # Create your models here.
 
 
-class style(models.Model):
-    style_name = models.CharField(max_length=200)
-    style_num = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.style_name
-
-
-class info(models.Model):
-    info_path = models.CharField(max_length=200)
-    info_size = models.CharField(max_length=20)
-    info_date = models.DateField('date published')
-
-    def recently(self):
-        return self.info_date >= timezone.now()-datetime.timedelta(days=1)
-
-    def __str__(self):
-        return self.info_path
+class pictures(models.Model):
+    pic_title = models.CharField(max_length=100)
+    pic_path = models.CharField(max_length=200)
+    pic_num = models.CharField(max_length=10)
+    pic_author = models.CharField(max_length=50)
+    pic_cover = models.CharField(max_length=100)
+    pic_tag1 = models.CharField(max_length=20)
+    pic_tag2 = models.CharField(max_length=20)
+    pic_tag3 = models.CharField(max_length=20)
+    pic_tag4 = models.CharField(max_length=20)
+    pic_tag5 = models.CharField(max_length=20)
+    pic_tag6 = models.CharField(max_length=20)
+    pic_tag7 = models.CharField(max_length=20)
