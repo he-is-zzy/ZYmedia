@@ -4,3 +4,4 @@ __pycache__/
 ZYmedia/__pycache__/
 */migrations/
 static/
+nginx/

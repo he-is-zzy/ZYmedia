@@ -25,7 +25,7 @@ SECRET_KEY = 'vejlrk)a#halt0j7yesb(31&@pi*k%_t=)&)x#hb2n7b#wrsl!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.107']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'ZYmedia.urls'
@@ -117,6 +119,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    R"C:/",
-    R"E:/",
 ]
+# CORS跨域请求白名单设置
+CORS_ORIGIN_WHITELIST = (
+    'http://www.zzy.com:8000',
+)
+CORS_ALLOW_CREDENTIALS = True

@@ -47,6 +47,7 @@ def find_pictures(path):
 
     for root, dirs, files in os.walk(path):
         for dir_name in dirs:
+            # print(dir_name)
             dir_count = dir_count + 1
             pic_title.append(dir_name)
             pic_cover.append(find_cover(os.path.join(root, dir_name)))
@@ -56,11 +57,9 @@ def find_pictures(path):
     for i in range(dir_count):
         tp = pic()
         tp.pic_title = pic_title[i]
-        tp.pic_cover = pic_cover[i]
+        tp.pic_cover = pic_cover[i].replace('D:/H', 'http://192.168.1.107:8080/files')
         tp.pic_path = pic_path[i]
         tp.pic_num = pic_num[i]
         pic_log.append(tp)
 
-    for i in range(dir_count):
-        print(pic_log[i].pic_title, pic_log[i].pic_num)
     return pic_log, dir_count

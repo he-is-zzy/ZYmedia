@@ -10,7 +10,8 @@ from pyscript import app_pic
 
 def index(request):
     # 图像路径
-    path = R"D:\H\Pictures and Photobooks\[PAP] Cosplay\SayaTheFox"
+    base_path = R"D:\H\Pictures and Photobooks\[PAP] Cosplay\SayaTheFox"
+    path = base_path.replace("\\", "/")
     # 获取内容
     pic_log, dir_count = app_pic.find_pictures(path)
     # 更新/创建
@@ -23,3 +24,18 @@ def index(request):
         'dic': pic_log,
     }
     return render(request, 'pictures/index.html', pic_dic)
+
+
+def content(request):
+    dir_path = ''
+    file_list = []
+    if request.method == 'POST':
+        dir_path = request.POST['path']
+        print(request.POST['path'])
+        for root, dirs, files in os.walk(dir_path):
+            for file in files:
+                file_list.append(os.path.join(root, file).replace('D:/H', 'http://192.168.1.107:8080/files'))
+    path = {
+        'path': file_list
+    }
+    return render(request, 'pictures/content.html', path)

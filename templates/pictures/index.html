@@ -20,11 +20,17 @@
         {% for foo in dic %}
             <div class="col-12 col-xxl-2 col-xl-3 col-lg-4 col-md-6">
                 <div class="card">
-                    <img class="card-img-top" src="{% static 'Picture/HDdeal/903198_waifu2x_2x_3n_jpg.png' %}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ foo.pic_title }}</h5>
-                        <p class="card-text">{{ foo.pic_path }}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <img class="card-img-top" src="{{ foo.pic_cover }}" style="height:300px;object-fit: cover">
+                    <div class="card-body d-grid gap-2" >
+                        <!--<h6 class="card-title d-grid gap-2">{{ foo.pic_title }}</h6>-->
+                        <form action="content/" method="post" class="d-grid gap-2">
+                            <div>
+                                <label for="path" style="display:none"></label>
+                                <input name="path" id="path" value="{{ foo.pic_path }}" style="display:none">
+                            </div>
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Browse</button>
+                        </form>
                     </div>
                 </div>
             </div>
