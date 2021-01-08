@@ -13,7 +13,9 @@
         {% for foo in path %}
             <div class="col-12 col-xxl-4 col-xl-6 col-lg-6 col-md-12">
                 <div class="card">
-                    <img src="{{ foo }}" class="card-img-top" alt="...">
+                    <a href="{{ foo }}">
+                        <img src="{{ foo }}" class="card-img-bottom" loading="lazy" alt="Loading">
+                    </a>
                 </div>
             </div>
         {% endfor %}

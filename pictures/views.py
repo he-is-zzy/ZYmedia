@@ -10,7 +10,7 @@ from pyscript import app_pic
 
 def index(request):
     # 图像路径
-    base_path = R"D:\H\Pictures and Photobooks\[PAP] Cosplay\SayaTheFox"
+    base_path = R"D:\H\Manga\[MG] Doujinshi\[雑誌] 快楽天 WEEKLY"
     path = base_path.replace("\\", "/")
     # 获取内容
     pic_log, dir_count = app_pic.find_pictures(path)
