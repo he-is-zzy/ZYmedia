@@ -2,28 +2,18 @@
 import os
 
 
-def find_cover(dir_path):
-    cover = ""
-    for root, dirs, files in os.walk(dir_path):
-        for file_name in files:
-            if file_name[:-4] == "cover" or file_name[:-4] == "Cover":
-                print("cover:", file_name)
-                cover = os.path.join(root, file_name)
-                return cover
-            else:
-                continue
-        cover = os.path.join(root, min(files))
-    return cover
+# 类型根目录
+def find_child_dir(root_path):
+    dir_path = []
+    for root, dirs, files in os.walk(root_path):
+        for dir_name in dirs:
+            father_path = os.path.abspath(os.path.dirname(os.path.join(root, dir_name)) + os.path.sep + ".")
+            if father_path == root_path:
+                dir_path.append(os.path.join(root, dir_name))
+    return dir_path
 
 
-def file_count(path):
-    count = 0
-    for root, dirs, files in os.walk(path):
-        for file_name in files:
-            count = count + 1
-    return count
-
-
+# 寻找图片目录
 def find_pictures(path):
     # 图片类
     class pic:
@@ -63,3 +53,27 @@ def find_pictures(path):
         pic_log.append(tp)
 
     return pic_log, dir_count
+
+
+# 寻找封面
+def find_cover(dir_path):
+    cover = ""
+    for root, dirs, files in os.walk(dir_path):
+        for file_name in files:
+            if file_name[:-4] == "cover" or file_name[:-4] == "Cover":
+                print("cover:", file_name)
+                cover = os.path.join(root, file_name)
+                return cover
+            else:
+                continue
+        cover = os.path.join(root, min(files))
+    return cover
+
+
+# 统计数量
+def file_count(path):
+    count = 0
+    for root, dirs, files in os.walk(path):
+        for file_name in files:
+            count = count + 1
+    return count

@@ -5,13 +5,47 @@
     <meta charset="UTF-8">
     <title>ZZY.FAMILY</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/background.css">
+    <script src="/static/js/jquery.min.js"></script>
 </head>
 
 
 <body>
-<div class="btn-dark" >
-    <a href="/pictures">Test</a>
+<div style="position:absolute;width:100%">
+    <div class="row" style="margin-top:100px;text-align:center">
+        <h1 style="color:white;font-size: 180px">ZZY.SITE</h1>
+        <div class="d-grid gap-2">
+            <a href="pictures/">
+                <button  class="btn btn-success" style="width:300px;height:100px;font-size:50px">Learn</button>
+            </a>
+            <a href="pictures/">
+                <button  class="btn btn-primary" style="width:300px;height:100px;font-size:50px">Relax</button>
+            </a>
+        </div>
+    </div>
 </div>
 
+
+<div class="stars"></div>
+<script>
+    $(document).ready(function(){
+        const stars = 800;
+        const $stars = $(".stars");
+        const r = 800;
+        for(let i=0; i<stars; i++){
+            const $star = $("<div/>").addClass("star");
+            $stars.append($star);
+        }
+        $(".star").each(function(){
+            const cur = $(this);
+            const s = 0.2 + (Math.random());
+            const curR = r + (Math.random() * 300);
+            cur.css({
+                transformOrigin:"0 0 "+curR+"px",
+                transform:" translate3d(0,0,-"+curR+"px) rotateY("+(Math.random()*360)+"deg) rotateX("+(Math.random()*-50)+"deg) scale("+s+","+s+")"
+
+            })
+        })
+    })</script>
 </body>
 </html>

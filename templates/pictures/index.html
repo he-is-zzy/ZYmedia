@@ -12,28 +12,30 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-    </div>
+    <p>Test</p>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        {% for foo in dic %}
-            <div class="col-12 col-xxl-1 col-xl-3 col-lg-4 col-md-6">
-                <div class="card">
-                    <img class="card-img-bottom" src="http://192.168.1.107:8080/files/Pictures and Photobooks/2.jpg" data-src="{{ foo.pic_cover }}" style="max-height:800px;object-fit: cover">
-                    <div class="card-footer d-grid gap-2" style="padding:0">
-                        <form action="content/" method="post" class="d-grid gap-2">
-                            <div>
-                                <label for="path" style="display:none"></label>
-                                <input name="path" id="path" value="{{ foo.pic_path }}" style="display:none">
-                            </div>
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-block">{{ foo.pic_title }}</button>
-                        </form>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="container-fluid col-10">
+        <div class="row">
+            {% for foo in dic %}
+                <div class="col-12 col-xxl-1 col-xl-3 col-lg-4 col-md-6">
+                    <div class="card">
+                        <img class="card-img-bottom" src="http://192.168.1.107:8080/files/Pictures and Photobooks/2.jpg" data-src="{{ foo.pic_cover }}" style="max-height:800px;object-fit: cover" alt="Loading">
+                        <div class="card-footer d-grid gap-2" style="padding:0">
+                            <form action="content/" method="post" class="d-grid gap-2">
+                                <div>
+                                    <label for="path" style="display:none"></label>
+                                    <input name="path" id="path" value="{{ foo.pic_path }}" style="display:none">
+                                </div>
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-block" style="font-size:15px">{{ foo.pic_title }}</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 <script>
