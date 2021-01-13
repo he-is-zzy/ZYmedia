@@ -11,6 +11,22 @@ def navigate(request):
     return render(request, 'pictures/Navigate.html')
 
 
+def add_path(request):
+    return render(request, 'pictures/add.html')
+
+
+def cal_path(request):
+    if request.method == 'POST':
+        root_path = request.POST["root_path"]
+        child_list = app_pic.find_child_dir(root_path)
+        for i in child_list:
+            print(i)
+            pic_list = app_pic.find_pictures(i)
+            for pic in pic_list:
+                print(pic.pic_title)
+    return render(request, 'pictures/add_success.html')
+
+
 def index(request):
     pic_data = pictures.objects.all()
     pic_dic = {
