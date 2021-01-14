@@ -14,46 +14,38 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <p>Test</p>
 </nav>
-<div class="row">
-    <div class="col-2"></div>
-    <div class="container-fluid col-10">
-        <div class="row">
-            {% for foo in dic %}
-                <div class="col-12 col-xxl-1 col-xl-3 col-lg-4 col-md-6">
-                    <div class="card">
-                        <img class="card-img-bottom" src="http://192.168.1.107:8080/files/Pictures and Photobooks/2.jpg" data-src="{{ foo.pic_cover }}" style="max-height:800px;object-fit: cover" alt="Loading">
-                        <div class="card-footer d-grid gap-2" style="padding:0">
-                            <form action="content/" method="post" class="d-grid gap-2">
-                                <div>
-                                    <label for="path" style="display:none"></label>
-                                    <input name="path" id="path" value="{{ foo.pic_path }}" style="display:none">
-                                </div>
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-primary btn-block" style="font-size:15px">{{ foo.pic_title }}</button>
-                            </form>
+<div class="container-fluid">
+    <div class="row">
+        {% for foo in dic %}
+            <div class="col-12 col-xxl-2 col-xl-3 col-lg-3 col-md-6">
+                <div class="card">
+                    <img class="card-img-top" loading="lazy" src="{{ foo.pic_cover }}" style="max-height:800px;object-fit:cover" alt="Loading">
+                    <form action="../content/" method="post" class="d-grid">
+                        <div>
+                            <label for="path" style="display:none"></label>
+                            <input name="path" id="path" value="{{ foo.pic_path }}" style="display:none">
                         </div>
-                    </div>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-block" style="font-size:10px">{{ foo.pic_title }}</button>
+                    </form>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 <script>
-    function query(selector) {
-        return Array.from(document.querySelectorAll(selector));
+    let imgs=[];
+    let i = 0;
+    const swidth = screen.width;
+    let maxh = 0;
+    imgs = document.getElementsByTagName("img");
+    if (swidth<992){
+        maxh = Math.ceil(swidth/2*1.3);
+        console.log(maxh+'px');
+        for(i=0;i<imgs.length;i++){
+        imgs[i].style['max-height']=maxh+'px';
     }
-
-    const io = new IntersectionObserver(function (items) {
-        items.forEach(function (item) {
-            const target = item.target;
-            if (target.getAttribute('src') === 'http://192.168.1.107:8080/files/Pictures and Photobooks/2.jpg') {
-                target.src = target.getAttribute('data-src');
-            }
-        })
-    });
-    query('img').forEach(function(item) {
-        io.observe(item);
-    });
+    }
 </script>
 </body>
 </html>
