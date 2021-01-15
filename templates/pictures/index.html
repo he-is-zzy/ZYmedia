@@ -15,10 +15,11 @@
     <p>Test</p>
 </nav>
 <div class="container-fluid">
+    <p id="widthp">TTTTTTTTTTTTTTTTTTTTTTTTTT</p>
     <div class="row">
         {% for foo in dic %}
-            <div class="col-12 col-xxl-2 col-xl-3 col-lg-3 col-md-6">
-                <div class="card">
+            <div class="col-xxl-1 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="card border-0" style="margin: 0;padding: 0">
                     <img class="card-img-top" loading="lazy" src="{{ foo.pic_cover }}" style="max-height:800px;object-fit:cover" alt="Loading">
                     <form action="../content/" method="post" class="d-grid">
                         <div>
@@ -28,6 +29,7 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary btn-block" style="font-size:10px">{{ foo.pic_title }}</button>
                     </form>
+                    <hr style="color: transparent">
                 </div>
             </div>
         {% endfor %}
@@ -35,16 +37,41 @@
 </div>
 <script>
     let imgs=[];
+
     let i = 0;
-    const swidth = screen.width;
     let maxh = 0;
+
     imgs = document.getElementsByTagName("img");
-    if (swidth<992){
-        maxh = Math.ceil(swidth/2*1.3);
-        console.log(maxh+'px');
+
+    contain = document.getElementsByClassName('container-fluid');
+
+    maxh = contain['0'].offsetWidth;
+    console.log(maxh);
+
+    if (maxh<992){
+        maxh = Math.ceil((maxh/2)*1.3);
+        document.getElementById("widthp").innerHTML='高度'+maxh;
         for(i=0;i<imgs.length;i++){
-        imgs[i].style['max-height']=maxh+'px';
-    }
+            imgs[i].style['height']=maxh+'px';
+        }
+    } else if(maxh>=992 && maxh<1200){
+        maxh = Math.ceil((maxh/4)*1.3);
+        document.getElementById("widthp").innerHTML='高度'+maxh;
+        for(i=0;i<imgs.length;i++){
+            imgs[i].style['height']=maxh+'px';
+        }
+    } else if (maxh>=1200 && maxh<1400){
+        maxh = Math.ceil((maxh/4)*1.3);
+        document.getElementById("widthp").innerHTML='高度'+maxh;
+        for(i=0;i<imgs.length;i++){
+            imgs[i].style['height']=maxh+'px';
+        }
+    } else if (1400<=maxh) {
+        maxh = Math.ceil((maxh / 13) * 1.3);
+        document.getElementById("widthp").innerHTML='高度'+maxh;
+        for (i = 0; i < imgs.length; i++) {
+            imgs[i].style['height'] = maxh + 'px';
+        }
     }
 </script>
 </body>
